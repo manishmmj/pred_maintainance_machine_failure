@@ -7,9 +7,9 @@ import pickle
 MODEL_PATH = "best_model_lightgbm.pkl"  # Update with the saved model path
 SCALER_PATH = "scaler.pkl"  # Save and load the scaler used during training
 
-model = pickle.load(MODEL_PATH,"rb")
+model = pickle.load(MODEL_PATH)
 
-scaler = pickle.load(SCALER_PATH,"rb")
+scaler = pickle.load(SCALER_PATH)
 
 # Title and description
 st.title("Predictive Maintenance Dashboard")
