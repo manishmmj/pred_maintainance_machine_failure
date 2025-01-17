@@ -10,6 +10,7 @@ MODEL_PATH = "best_model_lightgbm.pkl"  # Update with the saved model path
 with open(MODEL_PATH, "rb") as model_file:
     model = pickle.load(model_file)
 
+scaler = pd.read_csv(train_data)
 
 # Title and description
 st.title("Predictive Maintenance Dashboard")
