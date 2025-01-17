@@ -47,6 +47,7 @@ st.subheader("Machine Parameters")
 st.write(input_df)
 
 # Scale the input data
+
 scaled_input = scaler.transform(input_df)
 
 # Make predictions
