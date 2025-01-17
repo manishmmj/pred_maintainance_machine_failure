@@ -5,19 +5,10 @@ import pickle
 
 # Load the pre-trained model and scaler
 MODEL_PATH = "best_model_lightgbm.pkl"  # Update with the saved model path
-SCALER_PATH = "scaler.pkl"  # Save and load the scaler used during training
 
-
-# Load the pre-trained model and scaler using try-finally
-model_file = open(MODEL_PATH, "rb")
-scaler_file = open(SCALER_PATH, "rb")
-
-try:
+# load using pickle
+with open(MODEL_PATH, "rb") as model_file:
     model = pickle.load(model_file)
-    scaler = pickle.load(scaler_file)
-finally:
-    model_file.close()
-    scaler_file.close()
 
 
 # Title and description
