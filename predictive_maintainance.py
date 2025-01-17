@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from sklearn.preprocessing import StandardScaler
 
 # Load the pre-trained model and scaler
 MODEL_PATH = "best_model_logistic_regression.pkl"  # Update with the saved model path
@@ -60,6 +59,34 @@ if st.button("Predict"):
     result = "Failure" if prediction[0] == 1 else "No Failure"
     st.subheader(f"Prediction: {result}")
     st.write(f"Failure Probability: {prediction_proba[0]:.2f}")
+
+# Visualization: Basic ROC Curve
+st.subheader("ROC Curve")
+fpr = np.linspace(0, 1, num=100)  # Generate a dummy FPR
+tpr = np.power(fpr, 2)  # Generate a dummy TPR for demonstration
+roc_auc = np.trapz(tpr, fpr)  # Calculate the area under the curve
+
+# Plot the ROC Curve using Streamlit
+roc_data = pd.DataFrame({"FPR": fpr, "TPR": tpr})
+st.line_chart(roc_data.rename(columns={"FPR": "False Positive Rate", "TPR": "True Positive Rate"}))
+
+st.write(f"ROC AUC: {roc_auc:.2f}")
+
+# Visualization: Confusion Matrix
+st.subheader("Confusion Matrix")
+y_true = [1, 0]  # Replace with actual test labels
+y_pred = prediction.tolist()  # Replace with predicted labels
+cm = np.array([
+    [np.sum((np.array(y_true) == 0) & (np.array(y_pred) == 0)),  # True Negative
+     np.sum((np.array(y_true) == 0) & (np.array(y_pred) == 1))], # False Positive
+    [np.sum((np.array(y_true) == 1) & (np.array(y_pred) == 0)),  # False Negative
+     np.sum((np.array(y_true) == 1) & (np.array(y_pred) == 1))]  # True Positive
+])
+
+st.write("Confusion Matrix:")
+st.write(pd.DataFrame(cm, index=["Actual No Failure", "Actual Failure"], columns=["Predicted No Failure", "Predicted Failure"]))
+
+
 
 
 
