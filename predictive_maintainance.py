@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+from sklearn.preprocessing import StandardScaler
 
 # Load the pre-trained model and scaler
 MODEL_PATH = "best_model_lightgbm.pkl"  # Update with the saved model path
