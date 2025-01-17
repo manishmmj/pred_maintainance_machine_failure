@@ -4,7 +4,7 @@ import numpy as np
 import pickle
 
 # Load the pre-trained model and scaler
-MODEL_PATH = "best_model_logistic_regression.pkl"  # Update with the saved model path
+MODEL_PATH = "best_model_lightgbm.pkl"  # Update with the saved model path
 SCALER_PATH = "scaler.pkl"  # Save and load the scaler used during training
 
 with open(MODEL_PATH, "rb") as model_file:
