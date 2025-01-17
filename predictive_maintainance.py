@@ -1,10 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import pickle
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import roc_curve, auc, confusion_matrix, ConfusionMatrixDisplay
 
 # Load the pre-trained model and scaler
 MODEL_PATH = "best_model_logistic_regression.pkl"  # Update with the saved model path
@@ -63,30 +61,5 @@ if st.button("Predict"):
     st.subheader(f"Prediction: {result}")
     st.write(f"Failure Probability: {prediction_proba[0]:.2f}")
 
-# Visualization: ROC Curve
-st.subheader("ROC Curve")
-fpr, tpr, _ = roc_curve(model.classes_, prediction_proba)  # Mocked classes for demonstration
-roc_auc = auc(fpr, tpr)
 
-plt.figure(figsize=(8, 6))
-plt.plot(fpr, tpr, label=f"ROC Curve (AUC = {roc_auc:.2f})")
-plt.plot([0, 1], [0, 1], linestyle="--", color="gray")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-plt.title("ROC Curve")
-plt.legend(loc="lower right")
-st.pyplot(plt)
-
-# Visualization: Confusion Matrix
-st.subheader("Confusion Matrix")
-y_true = [1, 0]  # Replace with actual test labels
-y_pred = prediction  # Replace with predicted labels
-cm = confusion_matrix(y_true, y_pred)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No Failure", "Failure"])
-
-fig, ax = plt.subplots()
-disp.plot(ax=ax, cmap="Blues")
-st.pyplot(fig)
-
-st.write("Note: Replace `y_true` and `y_pred` with actual test data for real metrics.")
 
