@@ -91,3 +91,24 @@ st.pyplot(fig)
 st.write("Note: Replace `y_true` and `y_pred` with actual test data for real metrics.")
 
 
+import subprocess
+import sys
+
+# Ensure matplotlib is installed
+try:
+    import matplotlib.pyplot as plt
+except ModuleNotFoundError:
+    print("matplotlib not found. Installing now...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "matplotlib"])
+    import matplotlib.pyplot as plt  # Import again after installation
+
+# Example usage of matplotlib
+plt.figure(figsize=(6, 4))
+plt.plot([1, 2, 3, 4], [1, 4, 9, 16], label="Example Plot")
+plt.title("Example Plot with matplotlib")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.legend()
+plt.show()
+
+
