@@ -50,7 +50,7 @@ st.write(input_df)
 
 # Scale the input data
 
-scaled_input = scaler.fit_transform(input_df)
+scaled_input = scaler.transform(input_df.to_numpy())
 
 # Make predictions
 if st.button("Predict"):
