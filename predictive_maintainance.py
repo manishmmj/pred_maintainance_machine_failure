@@ -70,15 +70,22 @@ stds = {
 
 # Scale the input manually
 scaled_input = (input_df - pd.Series(means)) / pd.Series(stds)
+scaled_input_np = scaled_input.to_numpy()  # Convert to NumPy array
 
 # Make predictions
 if st.button("Predict"):
-    prediction = model.predict(scaled_input)
-    prediction_proba = model.predict_proba(scaled_input)[:, 1]
+    try:
+        prediction = model.predict(scaled_input_np)  # Use the NumPy array
+        prediction_proba = model.predict_proba(scaled_input_np)[:, 1]
+        
+        # Display results
+        result = "Failure" if prediction[0] == 1 else "No Failure"
+        st.subheader(f"Prediction: {result}")
+        st.write(f"Failure Probability: {prediction_proba[0]:.2f}")
+    except Exception as e:
+        st.error(f"Error during prediction: {e}")
     
-    result = "Failure" if prediction[0] == 1 else "No Failure"
-    st.subheader(f"Prediction: {result}")
-    st.write(f"Failure Probability: {prediction_proba[0]:.2f}")
+    
 
 # Visualization: Basic ROC Curve
 st.subheader("ROC Curve")
