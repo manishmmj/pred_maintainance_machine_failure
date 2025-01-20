@@ -72,6 +72,12 @@ stds = {
 scaled_input = (input_df - pd.Series(means)) / pd.Series(stds)
 scaled_input_np = scaled_input.to_numpy()  # Convert to NumPy array
 
+# Ensure proper shape for single input
+scaled_input_np = scaled_input_np.reshape(1, -1) if scaled_input_np.ndim == 1 else scaled_input_np
+
+# Debugging: Log the shape of the input
+st.write("Scaled Input Shape:", scaled_input_np.shape)
+
 # Make predictions
 if st.button("Predict"):
     try:
