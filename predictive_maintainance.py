@@ -54,7 +54,7 @@ st.write(input_df)
 feature_columns = ["Air temperature [K]", "Process temperature [K]", "Rotational speed [rpm]", 
                    "Torque [Nm]", "Tool wear [min]", "Type"]
 
-# Transform only the relevant columns
+
 scaled_input = scaler.transform(input_df[feature_columns])
 
 # Make predictions
