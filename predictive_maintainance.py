@@ -11,6 +11,8 @@ MODEL_PATH = "best_model_lightgbm.pkl"  # Update with the saved model path
 with open(MODEL_PATH, "rb") as model_file:
     model = pickle.load(model_file)
 
+st.write("Model type:", type(model))
+
 scaler = pd.read_csv("train_data.csv")
 
 # Title and description
