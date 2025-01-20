@@ -78,12 +78,17 @@ scaled_input_np = scaled_input_np.reshape(1, -1) if scaled_input_np.ndim == 1 el
 # Debugging: Log the shape of the input
 st.write("Scaled Input Shape:", scaled_input_np.shape)
 
-# Make predictions
+# make prediction
 if st.button("Predict"):
     try:
-        prediction = model.predict(scaled_input_np)  # Use the NumPy array
+        # Ensure scaled_input is in the correct format
+        scaled_input_np = scaled_input.to_numpy()
+        scaled_input_np = scaled_input_np.reshape(1, -1) if scaled_input_np.ndim == 1 else scaled_input_np
+
+        # Make predictions
+        prediction = model.predict(scaled_input_np)
         prediction_proba = model.predict_proba(scaled_input_np)[:, 1]
-        
+
         # Display results
         result = "Failure" if prediction[0] == 1 else "No Failure"
         st.subheader(f"Prediction: {result}")
