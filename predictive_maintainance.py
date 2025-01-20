@@ -50,12 +50,7 @@ st.write(input_df)
 
 # Scale the input data
 
-# Assuming the scaler was trained on specific feature columns
-feature_columns = ["Air temperature [K]", "Process temperature [K]", "Rotational speed [rpm]", 
-                   "Torque [Nm]", "Tool wear [min]", "Type"]
-
-
-scaled_input = scaler.transform(input_df[feature_columns])
+scaled_input = input_df.values
 
 # Make predictions
 if st.button("Predict"):
