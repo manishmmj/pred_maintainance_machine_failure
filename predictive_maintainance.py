@@ -49,8 +49,27 @@ st.subheader("Machine Parameters")
 st.write(input_df)
 
 # Scale the input data
+# These values should be calculated and saved during training
+means = {
+    "Air temperature [K]": 298.15,
+    "Process temperature [K]": 307.15,
+    "Rotational speed [rpm]": 3000,
+    "Torque [Nm]": 50,
+    "Tool wear [min]": 150,
+    "Type": 1  # Encoded type mean
+}
 
-scaled_input = input_df.values
+stds = {
+    "Air temperature [K]": 5.0,
+    "Process temperature [K]": 10.0,
+    "Rotational speed [rpm]": 1000,
+    "Torque [Nm]": 20.0,
+    "Tool wear [min]": 75,
+    "Type": 0.5
+}
+
+# Scale the input manually
+scaled_input = (input_df - pd.Series(means)) / pd.Series(stds)
 
 # Make predictions
 if st.button("Predict"):
