@@ -5,7 +5,7 @@ import pickle
 
 
 # Load the pre-trained model and scaler
-MODEL_PATH = "best_model_lightgbm.pkl"  # Update with the saved model path
+MODEL_PATH = "model_lightgbm_.pkl"  # Update with the saved model path
 
 # load using pickle
 with open(MODEL_PATH, "rb") as model_file:
