@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import sklearn
-
 
 # Load the pre-trained model and scaler
 MODEL_PATH = "model_logistic_reg.pkl"  # Update with the saved model path
