@@ -96,17 +96,5 @@ if st.button("Predict"):
     except Exception as e:
         st.error(f"Error during prediction: {e}")
     
-    
 
-# Visualization: Basic ROC Curve
-st.subheader("ROC Curve")
-fpr = np.linspace(0, 1, num=100)  # Generate a dummy FPR
-tpr = np.power(fpr, 2)  # Generate a dummy TPR for demonstration
-roc_auc = np.trapz(tpr, fpr)  # Calculate the area under the curve
-
-# Plot the ROC Curve using Streamlit
-roc_data = pd.DataFrame({"FPR": fpr, "TPR": tpr})
-st.line_chart(roc_data.rename(columns={"FPR": "False Positive Rate", "TPR": "True Positive Rate"}))
-
-st.write(f"ROC AUC: {roc_auc:.2f}")
 
